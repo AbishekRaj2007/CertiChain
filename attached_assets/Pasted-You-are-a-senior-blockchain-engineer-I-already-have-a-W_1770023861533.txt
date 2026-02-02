@@ -1,0 +1,135 @@
+You are a senior blockchain engineer.
+
+I already have a WORKING React frontend for a decentralized certificate verification app
+(CertifyChain). The frontend currently uses a mockContractService.js.
+
+Your task is to generate:
+1) A production-quality Solidity smart contract
+2) Hardhat deployment setup (testnet only)
+3) A real contract service file that REPLACES the mock service
+4) Clear integration instructions
+
+⚠️ IMPORTANT CONSTRAINTS:
+- Ethereum Sepolia testnet ONLY
+- Free tier only (no paid services)
+- Do NOT change existing UI components
+- Only replace the mock blockchain logic
+- Follow frontend-first Web3 architecture
+
+---
+
+## 🧱 SMART CONTRACT REQUIREMENTS
+
+Language: Solidity ^0.8.x
+
+Contract name: CertificateRegistry
+
+Roles:
+- Issuer (contract deployer)
+- Public verifier (anyone)
+
+Data model:
+- Certificate ID (string or uint)
+- Student name
+- Course name
+- IPFS hash
+- Issuer address
+- Issued timestamp
+- isValid (bool)
+
+Functions:
+1) issueCertificate(
+     certificateId,
+     studentName,
+     courseName,
+     ipfsHash
+   )
+   - Only issuer can call
+   - Certificate ID must be unique
+
+2) verifyCertificate(certificateId)
+   - Public view function
+   - Returns all certificate details
+
+3) revokeCertificate(certificateId)
+   - Only issuer
+   - Marks certificate as invalid (do NOT delete)
+
+Events:
+- CertificateIssued
+- CertificateRevoked
+
+Security:
+- Use require() checks
+- No unnecessary complexity
+- Gas-efficient mappings
+
+---
+
+## 🛠 HARDHAT SETUP
+
+Generate:
+- hardhat.config.js
+- deploy.js script
+- Instructions to:
+  - Add Sepolia RPC
+  - Use MetaMask private key (test wallet)
+  - Deploy to Sepolia
+  - Get contract address
+
+---
+
+## 🔌 FRONTEND INTEGRATION (VERY IMPORTANT)
+
+I currently have:
+src/services/mockContractService.js
+
+Generate:
+src/services/contractService.js
+
+This file must:
+- Use ethers.js
+- Connect to MetaMask signer
+- Import contract ABI
+- Use deployed contract address
+- Implement:
+    issueCertificate(data)
+    verifyCertificate(certificateId)
+
+⚠️ Function signatures MUST MATCH the mock service
+so that UI code does NOT change.
+
+Example:
+- mockContractService.js ❌
+- contractService.js ✅
+
+---
+
+## 🌐 NETWORK HANDLING
+
+In contractService.js:
+- Ensure user is on Sepolia testnet
+- Show clear error if wrong network
+- Handle:
+  - Transaction pending
+  - Transaction success
+  - Transaction failure
+
+---
+
+## 📄 OUTPUT REQUIREMENTS
+
+- Provide Solidity contract code
+- Provide Hardhat files
+- Provide contractService.js
+- Provide step-by-step deployment instructions
+- Explain how to switch from mock → real contract
+- Add comments explaining important logic
+
+DO NOT:
+- Modify UI components
+- Add backend servers
+- Use mainnet
+- Overcomplicate the contract
+
+This project is for learning + hackathon demo.

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useIssueCertificate } from "@/hooks/use-certificates";
 import { useWallet } from "@/hooks/use-wallet";
-import { insertCertificateSchema } from "@shared/schema";
+import { insertCertificateSchema } from "@/lib/schema";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 

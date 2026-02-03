@@ -22,10 +22,10 @@ export const contractService = {
 
   async getAddress() {
     if (!window.ethereum) return null;
-    const provider = new ethers.BrowserProvider(window.ethereum);
     try {
-      const signer = await provider.getSigner();
-      return await signer.getAddress();
+      // Use eth_accounts to check existing connection WITHOUT prompting
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      return accounts[0] || null;
     } catch (e) {
       return null;
     }

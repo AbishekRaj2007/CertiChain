@@ -6,18 +6,15 @@ import type { InsertCertificate } from "@/lib/schema";
 export function useIssueCertificate() {
   return useMutation({
     mutationFn: async (data: InsertCertificate) => {
-      // Issue on Blockchain
-      const tx = await contractService.issueCertificate(
+      // Issue on Blockchain (already waits for confirmation)
+      const result = await contractService.issueCertificate(
         data.certificateId,
         data.studentName,
         data.courseName,
         data.ipfsHash
       );
       
-      // Wait for confirmation
-      await tx.wait();
-      
-      return tx;
+      return result;
     },
   });
 }

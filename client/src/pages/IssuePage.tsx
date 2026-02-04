@@ -56,8 +56,8 @@ export default function IssuePage() {
     data.issuerAddress = address;
 
     issueMutation.mutate(data, {
-      onSuccess: (tx) => {
-        setSuccessTx(tx.hash);
+      onSuccess: (result) => {
+        setSuccessTx(result.txHash);
         toast({
           title: "Certificate Issued!",
           description: "Transaction submitted to the blockchain successfully.",
